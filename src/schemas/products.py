@@ -1,5 +1,7 @@
 from marshmallow import fields, Schema, validate, validate
+
 from src.utils.common_constants import DATETIME_FORMAT
+from src.schemas.pagination import PaginationRequestSchema
 
 
 class ProductCreateRequestSchema(Schema):
@@ -21,6 +23,6 @@ class ProductDetailsResponseSchema(Schema):
     stock = fields.Integer()
 
 
-class ProductListRequestSchema(Schema):
+class ProductListRequestSchema(PaginationRequestSchema):
     product_name = fields.String()
     product_type = fields.String()

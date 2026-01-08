@@ -11,6 +11,7 @@ from src.schemas.products import (
     ProductDetailsResponseSchema,
     ProductListRequestSchema,
 )
+from src.schemas.pagination import PaginationResponseSchema
 
 
 class ProductCreateResource(BaseResource):
@@ -36,5 +37,6 @@ class ProductDetailsResource(BaseResource):
 class ProductListResource(BaseResource):
 
     @use_kwargs(ProductListRequestSchema, location="querystring")
+    @marshal_with(PaginationResponseSchema(ProductDetailsResponseSchema), HTTPStatus.OK)
     def get(self, **kwargs):
         return ProductMethods.get_filtered_products(kwargs, db=db)

@@ -13,5 +13,8 @@ class ProductMethods(BaseModel):
         if product_type := kwargs.get("product_type"):
             filters.append(cls.model.product_type == product_type)
 
-        records = db.session.query(cls.model).filter(*filters).all()
+        query = db.session.query(cls.model).filter(*filters)
+        records = cls.get_paginated_records_with_filters(
+            page_number=kwargs["page_number"], page_size=kwargs["page_size"], query=query
+        )
         return records

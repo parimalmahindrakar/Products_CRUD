@@ -19,3 +19,7 @@ class BaseModel:
     def get_all_records(cls, limit=100, db=db):
         query = db.query(cls.model).order_by(cls.model.id.desc())
         return query.all() if limit == 0 else query.limit(limit).all()
+
+    @classmethod
+    def get_paginated_records_with_filters(cls, page_number, page_size, query):
+        return query.paginate(page=page_number, per_page=page_size)
