@@ -15,8 +15,8 @@
 - **DELETE** `/product/<int:product_id>/delete` Remove a product record from the system.
 
 ### Setup Instructions
-**1. Create a Virtual Environment** Run the following command to create a Python virtual environment: `python -m venv ~/.virtualenvs/SMB_TASk`
-**2. Install Dependencies** Install the necessary packages using the requirements file: `pip install -r requirements.txt`
-**3. Configure Environment Variables** Since this project uses a Supabase PostgreSQL database, you must create a `.env` file in the root directory and add your credentials in the following format:
+- ** Create a Virtual Environment** Run the following command to create a Python virtual environment: `python -m venv ~/.virtualenvs/SMB_TASk`
+- ** Install Dependencies** Install the necessary packages using the requirements file: `pip install -r requirements.txt`
+- ** Configure Environment Variables** Since this project uses a Supabase PostgreSQL database, you must create a `.env` file in the root directory and add your credentials in the following format:
 	`SMB_ENV=development SQLALCHEMY_DATABASE_URI=your_database_uri_here SQLALCHEMY_POOL_SIZE=10`
-**4. Run the Application** Execute the following command to start the server: `python manage.py run --port 5500`
+- ** Run the Application** Execute the following command to start the server: `python manage.py run --port 5500`
