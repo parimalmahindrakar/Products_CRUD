@@ -1,0 +1,18 @@
+from http import HTTPStatus
+from webargs.flaskparser import use_kwargs
+from flask_apispec import marshal_with
+
+from extensions import db
+from src.utils.base_resource import BaseResource
+from src.models.product_methods import ProductMethods
+from src.schemas.products import ProductCreateRequestSchema, ProductCreateResponseSchema
+
+
+class ProductCreateResource(BaseResource):
+
+    @use_kwargs(ProductCreateRequestSchema(), location="json")
+    @marshal_with(ProductCreateResponseSchema, HTTPStatus.CREATED)
+    def post(self, **kwargs):
+        record = ProductMethods.create_record(kwargs)
+        db.session.commit()
+        return {"product_id": record.id}
