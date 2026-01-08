@@ -1,4 +1,5 @@
 from marshmallow import fields, Schema, validate, validate
+from src.utils.common_constants import DATETIME_FORMAT
 
 
 class ProductCreateRequestSchema(Schema):
@@ -10,3 +11,11 @@ class ProductCreateRequestSchema(Schema):
 
 class ProductCreateResponseSchema(Schema):
     product_id = fields.Integer()
+
+
+class ProductDetailsResponseSchema(Schema):
+    created_at = fields.DateTime(format=DATETIME_FORMAT)
+    product_name = fields.String()
+    product_type = fields.String()
+    price = fields.Integer()
+    stock = fields.Integer()

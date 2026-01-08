@@ -5,7 +5,11 @@ from flask_apispec import marshal_with
 from extensions import db
 from src.utils.base_resource import BaseResource
 from src.models.product_methods import ProductMethods
-from src.schemas.products import ProductCreateRequestSchema, ProductCreateResponseSchema
+from src.schemas.products import (
+    ProductCreateRequestSchema,
+    ProductCreateResponseSchema,
+    ProductDetailsResponseSchema,
+)
 
 
 class ProductCreateResource(BaseResource):
@@ -16,3 +20,13 @@ class ProductCreateResource(BaseResource):
         record = ProductMethods.create_record(kwargs)
         db.session.commit()
         return {"product_id": record.id}
+
+
+class ProductDetailsResource(BaseResource):
+
+    @marshal_with(ProductDetailsResponseSchema, HTTPStatus.OK)
+    def get(self, product_id, **kwargs):
+        if not (record := ProductMethods.get_record_with_id(product_id, db=db)):
+            raise ValueError("Record not found for the corresponding product_id")
+
+        return record

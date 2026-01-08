@@ -13,7 +13,7 @@ class BaseModel:
 
     @classmethod
     def get_record_with_id(cls, model_id, db=db):
-        return db.query(cls.model).filter(cls.model.id == model_id).first()
+        return db.session.query(cls.model).filter(cls.model.id == model_id).first()
 
     @classmethod
     def get_all_records(cls, limit=100, db=db):
