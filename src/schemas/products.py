@@ -16,6 +16,7 @@ class ProductCreateResponseSchema(Schema):
 
 
 class ProductDetailsResponseSchema(Schema):
+    id = fields.Integer()
     created_at = fields.DateTime(format=DATETIME_FORMAT)
     product_name = fields.String()
     product_type = fields.String()
