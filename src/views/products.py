@@ -9,6 +9,7 @@ from src.schemas.products import (
     ProductCreateRequestSchema,
     ProductCreateResponseSchema,
     ProductDetailsResponseSchema,
+    ProductListRequestSchema,
 )
 
 
@@ -30,3 +31,10 @@ class ProductDetailsResource(BaseResource):
             raise ValueError("Record not found for the corresponding product_id")
 
         return record
+
+
+class ProductListResource(BaseResource):
+
+    @use_kwargs(ProductListRequestSchema, location="querystring")
+    def get(self, **kwargs):
+        return ProductMethods.get_filtered_products(kwargs, db=db)

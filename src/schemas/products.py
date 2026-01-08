@@ -19,3 +19,8 @@ class ProductDetailsResponseSchema(Schema):
     product_type = fields.String()
     price = fields.Integer()
     stock = fields.Integer()
+
+
+class ProductListRequestSchema(Schema):
+    product_name = fields.String()
+    product_type = fields.String()
