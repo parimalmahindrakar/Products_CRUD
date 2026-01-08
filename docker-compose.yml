@@ -1,0 +1,16 @@
+services:
+  product_management_API:
+    image: parimalmahindrakar/product-management:product-mng-v2
+    command: python manage.py run --host 0.0.0.0 --port 5500
+    volumes:
+      - .:/app
+    ports:
+      - 5500:5500
+    env_file:
+      - .env
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
